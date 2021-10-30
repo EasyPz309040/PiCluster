@@ -7,6 +7,10 @@ metadata:
 spec:
   type: {{ .Values.serviceNodePort.type }}
   ports:
-    - nodePort: {{ .Values.serviceNodePort.port }}
+    - port: {{ .Values.serviceClusterIP.port }}
+      nodePort: {{ .Values.serviceNodePort.port }}
+      targetPort: {{ .Values.serviceClusterIP.port }}
+      protocol: TCP
+      name: http
   selector:
     {{- include "rancher-cows.selectorLabels" . | nindent 4 }}
