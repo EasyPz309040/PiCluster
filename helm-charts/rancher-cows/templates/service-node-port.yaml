@@ -14,3 +14,4 @@ spec:
       name: http
   selector:
     {{- include "rancher-cows.selectorLabels" . | nindent 4 }}
+      app: {{ include "rancher-cows.fullname" . }}
