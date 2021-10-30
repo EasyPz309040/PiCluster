@@ -14,7 +14,7 @@ spec:
         app: rancher-cows
     spec:
       containers:
-        - name: hello-world
+        - name: rancher-cows
           image: bashofmann/rancher-demo:1.0.0
           imagePullPolicy: Always
           ports:
