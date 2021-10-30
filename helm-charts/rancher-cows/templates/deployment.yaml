@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello-world
+  name: rancher-cows
   namespace: default
 spec:
   replicas: 5
   selector:
     matchLabels:
-      app: hello-world
+      app: rancher-cows
   template:
     metadata:
       labels:
-        app: hello-world
+        app: rancher-cows
     spec:
       containers:
         - name: hello-world
