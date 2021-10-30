@@ -38,7 +38,7 @@ securityContext: {}
 
 serviceClusterIP:
   type: ClusterIP
-  port: 80
+  port: 8080
 
 serviceNodePort:
   type: NodePort
