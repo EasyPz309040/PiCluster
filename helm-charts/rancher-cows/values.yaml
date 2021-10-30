@@ -36,11 +36,11 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
-service:
+serviceClusterIP:
   type: ClusterIP
   port: 80
 
-service-np:
+serviceNodePort:
   type: NodePort
   port: 31117
 

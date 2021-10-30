@@ -5,9 +5,9 @@ metadata:
   labels:
     {{- include "rancher-cows.labels" . | nindent 4 }}
 spec:
-  type: {{ .Values.service-np.type }}
+  type: {{ .Values.serviceNodePort.type }}
   ports:
-    - port: {{ .Values.service-np.port }}
+    - port: {{ .Values.serviceNodePort.port }}
       targetPort: http
       protocol: TCP
       name: http
