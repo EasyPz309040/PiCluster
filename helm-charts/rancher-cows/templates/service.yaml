@@ -1,14 +1,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "rancher-cows.fullname" . }}
+  name: {{ include "rancher-cows.fullname" . }}-nodeport
   labels:
     {{- include "rancher-cows.labels" . | nindent 4 }}
 spec:
-  type: {{ .Values.serviceClusterIP.type }}
+  type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.serviceClusterIP.port }}
-      targetPort: http
+    - port: {{ .Values.containerPort.port }}
+      nodePort: {{ .Values.service.port }}
+      targetPort: {{ .Values.containerPort.port }}
       protocol: TCP
       name: http
   selector:

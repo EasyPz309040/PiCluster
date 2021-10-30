@@ -11,5 +11,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['{{ include "rancher-cows.fullname" . }}:{{ .Values.serviceClusterIP.port }}']
+      args: ['{{ include "rancher-cows.fullname" . }}:{{ .Values.service.port }}']
   restartPolicy: Never
