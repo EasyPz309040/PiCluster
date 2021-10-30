@@ -40,6 +40,10 @@ service:
   type: ClusterIP
   port: 80
 
+service-np:
+  type: NodePort
+  port: 31117
+
 ingress:
   enabled: false
   className: ""
