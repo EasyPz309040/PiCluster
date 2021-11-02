@@ -1,30 +1,93 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: rancher-cows
-  namespace: default
+  name: {{ include "rancher-cows.fullname" . }}
+  labels:
+    {{- include "rancher-cows.labels" . | nindent 4 }}
 spec:
-  replicas: 5
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
   selector:
     matchLabels:
-      app: rancher-cows
+      {{- include "rancher-cows.selectorLabels" . | nindent 6 }}
   template:
     metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       labels:
-        app: rancher-cows
+        {{- include "rancher-cows.selectorLabels" . | nindent 8 }}
     spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "rancher-cows.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - name: rancher-cows
-          image: bashofmann/rancher-demo:1.0.0
-          imagePullPolicy: Always
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-          - containerPort: {{ .Values.containerPort.port }}
-            name: web
-            protocol: TCP
-          env:
-            - name: COW_COLOR
-              value: purple
+            - name: web
+              containerPort: {{ .Values.containerPort.port }}
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: web
           readinessProbe:
             httpGet:
-              port: web
               path: /
+              port: web
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+
+
+#apiVersion: apps/v1
+#kind: Deployment
+#metadata:
+#  name: hello-world
+#  namespace: default
+#spec:
+#  replicas: 50
+#  selector:
+#    matchLabels:
+#      app: hello-world
+#  template:
+#    metadata:
+#      labels:
+#        app: hello-world
+#    spec:
+#      containers:
+#        - name: hello-world
+#          image: bashofmann/rancher-demo:1.0.0
+#          imagePullPolicy: Always
+#          ports:
+#          - containerPort: 8080
+#            name: web
+#            protocol: TCP
+#          env:
+#            - name: COW_COLOR
+#              value: purple
+#          readinessProbe:
+#            httpGet:
+#              port: web
+#              path: /
