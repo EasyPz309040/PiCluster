@@ -12,5 +12,5 @@ spec:
       targetPort: {{ .Values.containerPort.port }}
       name: web
   selector:
-    app: {{ include "nginx.fullname" . }}
-#    {{- include "nginx.selectorLabels" . | nindent 4 }}
+    {{- include "nginx.selectorLabels" . | nindent 4 }}
+#   app: {{ include "nginx.fullname" . }}
