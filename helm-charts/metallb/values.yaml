@@ -4,6 +4,9 @@
 
 replicaCount: 1
 
+namespace:
+  name: metallb-system
+
 image:
   repository: nginx
   pullPolicy: IfNotPresent
