@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "nfs-server.fullname" . }}
+  namespace: {{ .Values.namespace.name }}
   labels:
     {{- include "nfs-server.labels" . | nindent 4 }}
 spec:
@@ -29,24 +30,35 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
         - name: {{ .Chart.Name }}
+        - env:
+          - name: SHARED_DIRECTORY
+            value: /exports
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - name: http
-              containerPort: 80
+            - name: nfs
+              containerPort: 2049
               protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
+            - name: mountd
+              containerPort: 20048
+              protocol: TCP
+            - name: rpcbind
+              containerPort: 111
+              protocol: TCP
+          volumeMounts:
+          - mountPath: /exports
+            name: mypvc
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - name: mypvc
+          persistentVolumeClaim:
+            claimName: {{ include "nfs-server.fullname" . }}
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

@@ -4,19 +4,32 @@
 
 replicaCount: 1
 
+namespace:
+  name: storage
+
 image:
-  repository: nginx
-  pullPolicy: IfNotPresent
+  repository: itsthenetwork/nfs-server-alpine
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "11-arm"
 
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
+
+nfsServer:
+  serverIP: "192.168.0.62"
+  mountPath: /mnt/nfsshare
+  storageCapacity: 10Gi
+
+env:
+  name: SHARED_DIRECTORY
+  value: /exports
+
 serviceAccount:
   # Specifies whether a service account should be created
-  create: true
+  create: false
   # Annotations to add to the service account
   annotations: {}
   # The name of the service account to use.
@@ -26,9 +39,11 @@ serviceAccount:
 podAnnotations: {}
 
 podSecurityContext: {}
+
   # fsGroup: 2000
 
 securityContext: {}
+  privileged: true
   # capabilities:
   #   drop:
   #   - ALL
@@ -75,7 +90,7 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
-nodeSelector: {}
+nodeSelector: {hdd: enabled}
 
 tolerations: []
 

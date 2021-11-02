@@ -37,6 +37,9 @@ spec:
             - name: web
               containerPort: {{ .Values.containerPort.port }}
               protocol: TCP
+          env:
+            - name: {{ .Values.env.name }}
+              value: {{ .Values.env.value }}
           livenessProbe:
             httpGet:
               path: /
