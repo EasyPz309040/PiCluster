@@ -6,9 +6,9 @@ metadata:
   labels:
   {{- include "metallb-config.labels" . | nindent 4 }}
 data:
-  config:
+  config: |
     address-pools:
     - name: default
       protocol: layer2
       addresses:
-      {{- .Values.config.ipRange }}
+      {{- .Values.config.ipPool }}
