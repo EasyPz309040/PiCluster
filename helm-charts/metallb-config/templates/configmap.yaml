@@ -11,4 +11,4 @@ data:
     - name: default
       protocol: layer2
       addresses:
-      {{- .Values.config.ip-range }}
+      {{- .Values.config.ipRange }}

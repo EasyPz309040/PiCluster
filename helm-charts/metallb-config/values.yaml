@@ -6,4 +6,4 @@ namespace:
   name: metallb-system
 
 config:
-  config: "192.168.0.200/24-192.168.0.254/24"
+  ipRange: "192.168.0.200/24-192.168.0.254/24"
