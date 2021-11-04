@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   namespace: metallb-system
-  name: config
+  name: {{ include "metallb-config.fullname" . }}
   labels:
   {{- include "metallb-config.labels" . | nindent 4 }}
 data:
