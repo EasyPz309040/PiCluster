@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: metallb-system
+  name: config
+  labels:
+  {{- include "metallb-config.labels" . | nindent 4 }}
+data:
+  config:
+    address-pools:
+    - name: default
+      protocol: layer2
+      addresses:
+      {{- .Values.config.ip-range }}
