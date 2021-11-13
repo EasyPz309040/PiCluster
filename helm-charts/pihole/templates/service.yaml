@@ -1,15 +1,52 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "pihole.fullname" . }}
-  labels:
-    {{- include "pihole.labels" . | nindent 4 }}
+    name: pihole-tcp
+    annotations:
+        metallb.universe.tf/address-pool: default
+        metallb.universe.tf/allow-shared-ip: pihole-svc
 spec:
-  type: {{ .Values.service.type }}
-  ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
-      protocol: TCP
-      name: http
-  selector:
-    {{- include "pihole.selectorLabels" . | nindent 4 }}
+    externalTrafficPolicy: Local
+    loadBalancerIP: 10.0.20.3
+    ports:
+        # pihole use Ports to expose (53, 80, 67, 443), the bare minimum ports required for Pi-holes HTTP and DNS services
+        - port: 80
+          targetPort: 80
+          name: port80
+          protocol: TCP
+        - port: 443
+          targetPort: 443
+          name: port443
+          protocol: TCP
+        - port: 53
+          targetPort: 53
+          protocol: TCP
+          name: port53
+    selector:
+        app: pihole
+    type: LoadBalancer
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: pihole-udp
+    annotations:
+        metallb.universe.tf/address-pool: default
+        metallb.universe.tf/allow-shared-ip: pihole-svc
+spec:
+    externalTrafficPolicy: Local
+    loadBalancerIP: 10.0.20.3
+    ports:
+        - port: 53
+          targetPort: 53
+          protocol: UDP
+          name: port53-udp
+        - port: 67
+          targetPort: 67
+          protocol: UDP
+          name: port67-udp
+    selector:
+        app: pihole
+    type: LoadBalancer

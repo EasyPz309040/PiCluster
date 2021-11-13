@@ -4,15 +4,28 @@
 
 replicaCount: 1
 
+namespace:
+  name: default
+
 image:
-  repository: nginx
+  repository: pihole/pihole
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "latest"
 
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
+
+nfsServer:
+  serverIP: "192.168.0.101"
+  mountPath: /mnt/nfsshare
+  storageCapacityPiHole: 1Gi
+  storageCapacityDnsmasq: 100Mi
+
+env:
+  name: SHARED_DIRECTORY
+  value: /exports
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -37,7 +50,7 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  type: ClusterIP
+  type: LoadBalancer
   port: 80
 
 ingress:

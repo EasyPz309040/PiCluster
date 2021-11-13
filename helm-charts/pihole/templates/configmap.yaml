@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: default
+  name: {{ include "pihole.fullname" . }}
+  labels:
+    {{- include "pihole.labels" . | nindent 4 }}
+data:
+    WEBPASSWORD: pihole
+    TZ: 'Europe/Copenhagen'
+    DNS1: 1.1.1.1
+    DNS2: 8.8.8.8

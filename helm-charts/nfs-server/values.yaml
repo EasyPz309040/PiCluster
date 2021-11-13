@@ -9,7 +9,7 @@ namespace:
 
 image:
   repository: itsthenetwork/nfs-server-alpine
-  pullPolicy: Always
+  pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "11-arm"
 

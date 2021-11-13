@@ -1,0 +1,115 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ include "pihole.fullname" . }}
+  labels:
+    {{- include "pihole.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - ReadWriteOnce
+    - ReadOnlyMany
+    - ReadWriteMany
+  capacity:
+    storage: {{ .Values.nfsServer.storageCapacityPiHole }}
+  claimRef:
+    apiVersion: v1
+    kind: PersistentVolumeClaim
+    name: {{ include "pihole.fullname" . }}
+    namespace: {{ .Values.namespace.name }}
+  nfs:
+    path: {{ .Values.pihole.mountPath }}
+    readOnly: false
+    server: {{ .Values.pihole.serverIP }}
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: hdd
+              operator: In
+              values:
+                - enabled
+  persistentVolumeReclaimPolicy: Retain
+  volumeMode: Filesystem
+
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ include "pihole.fullname" . }}-dnsmasq
+  labels:
+    {{- include "pihole.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - ReadWriteOnce
+    - ReadOnlyMany
+    - ReadWriteMany
+  capacity:
+    storage: {{ .Values.nfsServer.storageCapacityDnsmasq }}
+  claimRef:
+    apiVersion: v1
+    kind: PersistentVolumeClaim
+    name: {{ include "pihole.fullname" . }}-dnsmasq
+    namespace: {{ .Values.namespace.name }}
+  nfs:
+    path: {{ .Values.pihole.mountPath }}
+    readOnly: false
+    server: {{ .Values.pihole.serverIP }}
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: hdd
+              operator: In
+              values:
+                - enabled
+  persistentVolumeReclaimPolicy: Retain
+  volumeMode: Filesystem
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "pihole.fullname" . }}
+  namespace: {{ .Values.namespace.name }}
+spec:
+  accessModes:
+  - ReadWriteMany
+  - ReadWriteOnce
+  - ReadOnlyMany
+  resources:
+    requests:
+      storage: {{ .Values.nfsServer.storageCapacityPiHole }}
+  storageClassName: ""
+  volumeMode: Filesystem
+  volumeName: {{ include "pihole.fullname" . }}
+status:
+  accessModes:
+  - ReadWriteOnce
+  - ReadOnlyMany
+  - ReadWriteMany
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "pihole.fullname" . }}-dnsmasq
+  namespace: {{ .Values.namespace.name }}
+spec:
+  accessModes:
+  - ReadWriteMany
+  - ReadWriteOnce
+  - ReadOnlyMany
+  resources:
+    requests:
+      storage: {{ .Values.nfsServer.storageCapacityDnsmasq }}
+  storageClassName: ""
+  volumeMode: Filesystem
+  volumeName: {{ include "pihole.fullname" . }}-dnsmasq
+status:
+  accessModes:
+  - ReadWriteOnce
+  - ReadOnlyMany
+  - ReadWriteMany
