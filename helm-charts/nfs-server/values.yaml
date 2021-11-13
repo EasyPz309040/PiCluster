@@ -19,7 +19,7 @@ fullnameOverride: ""
 
 
 nfsServer:
-  serverIP: "192.168.0.62"
+  serverIP: "192.168.0.101"
   mountPath: /mnt/nfsshare
   storageCapacity: 10Gi
 
