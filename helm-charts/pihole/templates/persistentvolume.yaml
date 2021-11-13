@@ -17,9 +17,9 @@ spec:
     name: {{ include "pihole.fullname" . }}
     namespace: {{ .Values.namespace.name }}
   nfs:
-    path: {{ .Values.pihole.mountPath }}
+    path: {{ .Values.nfsServer.mountPath }}
     readOnly: false
-    server: {{ .Values.pihole.serverIP }}
+    server: {{ .Values.nfsServer.serverIP }}
   nodeAffinity:
     required:
       nodeSelectorTerms:
@@ -52,9 +52,9 @@ spec:
     name: {{ include "pihole.fullname" . }}-dnsmasq
     namespace: {{ .Values.namespace.name }}
   nfs:
-    path: {{ .Values.pihole.mountPath }}
+    path: {{ .Values.nfsServer.mountPath }}
     readOnly: false
-    server: {{ .Values.pihole.serverIP }}
+    server: {{ .Values.nfsServer.serverIP }}
   nodeAffinity:
     required:
       nodeSelectorTerms:
