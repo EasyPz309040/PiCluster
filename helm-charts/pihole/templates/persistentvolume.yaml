@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: {{ ".Values.pv.namePiHole" }}
+  name: {{ .Values.pv.namePiHole }}
   labels:
     {{- include "pihole.labels" . | nindent 4 }}
 spec:
@@ -11,11 +11,11 @@ spec:
     - ReadWriteMany
   capacity:
     storage: 1Gi
-#    storage: {{ ".Values.pv.storagePiHole" }}
+#    storage: {{ .Values.pv.storagePiHole }}
   claimRef:
     apiVersion: v1
     kind: PersistentVolumeClaim
-    name: {{ ".Values.pv.namePiHole" }}
+    name: {{ .Values.pv.namePiHole }}
   nfs:
     path: {{ .Values.nfsServer.mountPath }}
     readOnly: false
@@ -36,7 +36,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: {{ ".Values.pv.nameDnsmasq" }}
+  name: {{ .Values.pv.nameDnsmasq }}
   labels:
     {{- include "pihole.labels" . | nindent 4 }}
 spec:
@@ -50,7 +50,7 @@ spec:
   claimRef:
     apiVersion: v1
     kind: PersistentVolumeClaim
-    name: {{ ".Values.pv.nameDnsmasq" }}
+    name: {{ .Values.pv.nameDnsmasq }}
   nfs:
     path: {{ .Values.nfsServer.mountPath }}
     readOnly: false
@@ -71,7 +71,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ ".Values.pv.namePiHole" }}
+  name: {{ .Values.pv.namePiHole }}
 spec:
   accessModes:
   - ReadWriteMany
@@ -80,10 +80,10 @@ spec:
   resources:
     requests:
       storage: 1Gi
-#      storage: {{ ".Values.pv.storagePiHole" }}
+#      storage: {{ .Values.pv.storagePiHole }}
   storageClassName: ""
   volumeMode: Filesystem
-  volumeName: {{ ".Values.pv.namePiHole" }}
+  volumeName: {{ .Values.pv.namePiHole }}
 status:
   accessModes:
   - ReadWriteOnce
@@ -95,7 +95,7 @@ status:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ ".Values.pv.nameDnsmasq" }}
+  name: {{ .Values.pv.nameDnsmasq }}
 spec:
   accessModes:
   - ReadWriteMany
@@ -107,7 +107,7 @@ spec:
 #      storage: {{ ".Values.pv.storageDnsmasq" }}
   storageClassName: ""
   volumeMode: Filesystem
-  volumeName: {{ ".Values.pv.nameDnsmasq" }}
+  volumeName: {{ .Values.pv.nameDnsmasq }}
 status:
   accessModes:
   - ReadWriteOnce
