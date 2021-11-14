@@ -11,8 +11,8 @@ spec:
     - ReadOnlyMany
     - ReadWriteMany
   capacity:
-#    storage: 1Gi
-    storage: {{ .Values.pv.capacityPiHole }}
+    storage: 1Gi
+#    storage: {{ .Values.pv.capacityPiHole }}
   claimRef:
     apiVersion: v1
     kind: PersistentVolumeClaim
@@ -47,8 +47,8 @@ spec:
   - ReadOnlyMany
   resources:
     requests:
-#      storage: 1Gi
-      storage: {{ .Values.pv.capacityPiHole }}
+      storage: 1Gi
+#      storage: {{ .Values.pv.capacityPiHole }}
   storageClassName: ""
   volumeMode: Filesystem
   volumeName: {{ .Values.pv.namePiHole }}
@@ -73,8 +73,8 @@ spec:
     - ReadOnlyMany
     - ReadWriteMany
   capacity:
-#    storage: 100Mi
-    storage: {{ ".Values.pv.capacityDnsmasq" }}
+    storage: 100Mi
+#    storage: {{ ".Values.pv.capacityDnsmasq" }}
   claimRef:
     apiVersion: v1
     kind: PersistentVolumeClaim
@@ -109,8 +109,8 @@ spec:
   - ReadOnlyMany
   resources:
     requests:
-#      storage: 100Mi
-      storage: {{ ".Values.pv.capacityDnsmasq" }}
+      storage: 100Mi
+#      storage: {{ ".Values.pv.capacityDnsmasq" }}
   storageClassName: ""
   volumeMode: Filesystem
   volumeName: {{ .Values.pv.nameDnsmasq }}
