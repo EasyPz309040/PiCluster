@@ -7,7 +7,7 @@ metadata:
         metallb.universe.tf/allow-shared-ip: pihole-svc
 spec:
     externalTrafficPolicy: Local
-    loadBalancerIP: 10.0.20.3
+    loadBalancerIP:  {{ "Values.service.ip" }}
     ports:
         # pihole use Ports to expose (53, 80, 67, 443), the bare minimum ports required for Pi-holes HTTP and DNS services
         - port: 80
@@ -37,7 +37,7 @@ metadata:
         metallb.universe.tf/allow-shared-ip: pihole-svc
 spec:
     externalTrafficPolicy: Local
-    loadBalancerIP: 10.0.20.3
+    loadBalancerIP: {{ "Values.service.ip" }}
     ports:
         - port: 53
           targetPort: 53
