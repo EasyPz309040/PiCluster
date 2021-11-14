@@ -36,6 +36,31 @@ spec:
 ---
 
 apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Values.pv.namePiHole }}
+  namespace: {{ .Values.namespace.name }}
+spec:
+  accessModes:
+  - ReadWriteMany
+  - ReadWriteOnce
+  - ReadOnlyMany
+  resources:
+    requests:
+#      storage: 1Gi
+      storage: {{ .Values.pv.capacityPiHole }}
+  storageClassName: ""
+  volumeMode: Filesystem
+  volumeName: {{ .Values.pv.namePiHole }}
+status:
+  accessModes:
+  - ReadWriteOnce
+  - ReadOnlyMany
+  - ReadWriteMany
+
+---
+
+apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: {{ .Values.pv.nameDnsmasq }}
@@ -69,31 +94,6 @@ spec:
                 - enabled
   persistentVolumeReclaimPolicy: Retain
   volumeMode: Filesystem
-
----
-
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: {{ .Values.pv.namePiHole }}
-  namespace: {{ .Values.namespace.name }}
-spec:
-  accessModes:
-  - ReadWriteMany
-  - ReadWriteOnce
-  - ReadOnlyMany
-  resources:
-    requests:
-#      storage: 1Gi
-      storage: {{ .Values.pv.capacityPiHole }}
-  storageClassName: ""
-  volumeMode: Filesystem
-  volumeName: {{ .Values.pv.namePiHole }}
-status:
-  accessModes:
-  - ReadWriteOnce
-  - ReadOnlyMany
-  - ReadWriteMany
 
 ---
 
