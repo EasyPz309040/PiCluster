@@ -17,6 +17,7 @@ spec:
     apiVersion: v1
     kind: PersistentVolumeClaim
     name: {{ .Values.pv.namePiHole }}
+    namespace: {{ .Values.namespace.name }}
   nfs:
     path: {{ .Values.nfsServer.mountPath }}
     readOnly: false
@@ -53,6 +54,7 @@ spec:
     apiVersion: v1
     kind: PersistentVolumeClaim
     name: {{ .Values.pv.nameDnsmasq }}
+    namespace: {{ .Values.namespace.name }}
   nfs:
     path: {{ .Values.nfsServer.mountPath }}
     readOnly: false
