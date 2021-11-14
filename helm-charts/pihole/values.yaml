@@ -4,9 +4,6 @@
 
 replicaCount: 1
 
-namespace:
-  name: default
-
 image:
   repository: pihole/pihole
   pullPolicy: IfNotPresent
@@ -20,8 +17,13 @@ fullnameOverride: ""
 nfsServer:
   serverIP: "192.168.0.101"
   mountPath: /mnt/nfsshare
+
+pv:
+  namePiHole: pihole
   storageCapacityPiHole: 1Gi
+  nameDnsmasq: dnsmasq
   storageCapacityDnsmasq: 100Mi
+
 
 env:
   name: SHARED_DIRECTORY

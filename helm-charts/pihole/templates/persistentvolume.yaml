@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: {{ include "pihole.fullname" . }}
+  name: {{ "Values.pv.namePiHole" }}
   labels:
     {{- include "pihole.labels" . | nindent 4 }}
 spec:
@@ -10,12 +10,11 @@ spec:
     - ReadOnlyMany
     - ReadWriteMany
   capacity:
-    storage: {{ .Values.nfsServer.storageCapacityPiHole }}
+    storage: {{ .Values.pv.storageCapacityPiHole }}
   claimRef:
     apiVersion: v1
     kind: PersistentVolumeClaim
-    name: {{ include "pihole.fullname" . }}
-    namespace: {{ .Values.namespace.name }}
+    name: {{ "Values.pv.namePiHole" }}
   nfs:
     path: {{ .Values.nfsServer.mountPath }}
     readOnly: false
@@ -36,7 +35,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: {{ include "pihole.fullname" . }}-dnsmasq
+  name: {{ "Values.pv.nameDnsmasq" }}
   labels:
     {{- include "pihole.labels" . | nindent 4 }}
 spec:
@@ -49,8 +48,7 @@ spec:
   claimRef:
     apiVersion: v1
     kind: PersistentVolumeClaim
-    name: {{ include "pihole.fullname" . }}-dnsmasq
-    namespace: {{ .Values.namespace.name }}
+    name: {{ "Values.pv.nameDnsmasq" }}
   nfs:
     path: {{ .Values.nfsServer.mountPath }}
     readOnly: false
@@ -71,8 +69,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ include "pihole.fullname" . }}
-  namespace: {{ .Values.namespace.name }}
+  name: {{ "Values.pv.namePiHole" }}
 spec:
   accessModes:
   - ReadWriteMany
@@ -80,10 +77,10 @@ spec:
   - ReadOnlyMany
   resources:
     requests:
-      storage: {{ .Values.nfsServer.storageCapacityPiHole }}
+      storage: {{ .Values.pv.storageCapacityPiHole }}
   storageClassName: ""
   volumeMode: Filesystem
-  volumeName: {{ include "pihole.fullname" . }}
+  volumeName: {{ "Values.pv.namePiHole" }}
 status:
   accessModes:
   - ReadWriteOnce
@@ -95,8 +92,7 @@ status:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ include "pihole.fullname" . }}-dnsmasq
-  namespace: {{ .Values.namespace.name }}
+  name: {{ "Values.pv.nameDnsmasq" }}
 spec:
   accessModes:
   - ReadWriteMany
@@ -104,10 +100,10 @@ spec:
   - ReadOnlyMany
   resources:
     requests:
-      storage: {{ .Values.nfsServer.storageCapacityDnsmasq }}
+      storage: {{ .Values.pv.storageCapacityDnsmasq }}
   storageClassName: ""
   volumeMode: Filesystem
-  volumeName: {{ include "pihole.fullname" . }}-dnsmasq
+  volumeName: {{ "Values.pv.nameDnsmasq" }}
 status:
   accessModes:
   - ReadWriteOnce
