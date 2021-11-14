@@ -20,9 +20,9 @@ nfsServer:
 
 pv:
   namePiHole: pihole
-  storageCapacityPiHole: 1Gi
+  storagePiHole: 1Gi
   nameDnsmasq: dnsmasq
-  storageCapacityDnsmasq: 100Mi
+  storageDnsmasq: 100Mi
 
 
 env:
