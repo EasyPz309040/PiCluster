@@ -23,7 +23,8 @@ spec:
           protocol: TCP
           name: port53
     selector:
-        app: pihole
+      {{- include "nginx.selectorLabels" . | nindent 4 }}
+#        app: pihole
     type: LoadBalancer
 
 ---
@@ -48,5 +49,6 @@ spec:
           protocol: UDP
           name: port67-udp
     selector:
-        app: pihole
+      {{- include "nginx.selectorLabels" . | nindent 4 }}
+#        app: pihole
     type: LoadBalancer
