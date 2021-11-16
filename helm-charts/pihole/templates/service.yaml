@@ -7,8 +7,8 @@ metadata:
   annotations:
     metallb.universe.tf/address-pool: default
     metallb.universe.tf/allow-shared-ip: pihole-svc
-    traefik.ingress.kubernetes.io/affinity: "true"
-    traefik.ingress.kubernetes.io/session-cookie-name: "sticky"
+#    traefik.ingress.kubernetes.io/affinity: "true"
+#    traefik.ingress.kubernetes.io/session-cookie-name: "sticky"
 spec:
   externalTrafficPolicy: Local
   loadBalancerIP:  {{ .Values.service.ip }}
