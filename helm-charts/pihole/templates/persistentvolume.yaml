@@ -19,7 +19,7 @@ spec:
     name: {{ .Values.pv.namePiHole }}
     namespace: {{ .Values.namespace.name }}
   nfs:
-    path: {{ .Values.nfsServer.mountPath }}
+    path: {{ .Values.nfsServer.mountPathPihole }}
     readOnly: false
     server: {{ .Values.nfsServer.serverIP }}
   nodeAffinity:
@@ -81,7 +81,7 @@ spec:
     name: {{ .Values.pv.nameDnsmasq }}
     namespace: {{ .Values.namespace.name }}
   nfs:
-    path: {{ .Values.nfsServer.mountPath }}
+    path: {{ .Values.nfsServer.mountPathDnsmasq }}
     readOnly: false
     server: {{ .Values.nfsServer.serverIP }}
   nodeAffinity:
