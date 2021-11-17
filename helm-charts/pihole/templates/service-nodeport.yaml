@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pihole-np
+  labels:
+    {{- include "pihole.labels" . | nindent 4 }}
+spec:
+  type: NodePort
+  ports:
+    - port: 31116
+      nodePort: 31116
+      targetPort: 80
+      name: web
+  selector:
+    {{- include "pihole.selectorLabels" . | nindent 4 }}
