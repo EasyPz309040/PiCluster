@@ -10,3 +10,4 @@ data:
       protocol: layer2
       addresses:
       {{- .Values.config.ipPool }}
+      avoid-buggy-ips: true
