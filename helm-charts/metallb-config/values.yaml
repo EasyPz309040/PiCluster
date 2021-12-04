@@ -6,4 +6,4 @@ namespace:
   name: metallb-system
 
 config:
-  ipPool: 192.168.0.200-192.168.0.254
+  ipPool: [192.168.0.200-192.168.0.254]
