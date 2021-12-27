@@ -50,7 +50,11 @@ ingress:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: dadland.com
+    - host: dadland.pi
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+    - host: kumuruku.pi
       paths:
         - path: /
           pathType: ImplementationSpecific
@@ -78,7 +82,8 @@ autoscaling:
   targetCPUUtilizationPercentage: 75
   # targetMemoryUtilizationPercentage: 80
 
-nodeSelector: {}
+nodeSelector: 
+  worker: pi
 
 tolerations: []
 
