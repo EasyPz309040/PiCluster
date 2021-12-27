@@ -17,6 +17,8 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
+adminPassword: "admin"
+
 nfsServer:
   serverIP: "192.168.0.101"
   mountPathPihole: /mnt/ssd/etc/pihole
