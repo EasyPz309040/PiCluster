@@ -77,12 +77,13 @@ resources: {}
 
 autoscaling:
   enabled: true
-  minReplicas: 3
+  minReplicas: 5
   maxReplicas: 30
   targetCPUUtilizationPercentage: 20
   # targetMemoryUtilizationPercentage: 80
 
-nodeSelector: {}
+nodeSelector: 
+  worker: pi
 
 tolerations: []
 

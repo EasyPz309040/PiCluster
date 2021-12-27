@@ -1,13 +1,13 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  namespace: metallb-system
-  name: metallb
-data:
-  config: |
-    address-pools:
-    - name: default
-      protocol: layer2
-      addresses:
-      {{- .Values.config.ipPool }}
-      avoid-buggy-ips: true
+#apiVersion: v1
+#kind: ConfigMap
+#metadata:
+#  namespace: metallb-system
+#  name: metallb
+#data:
+#  config: |
+#    address-pools:
+#    - name: default
+#      protocol: layer2
+#      addresses:
+#      {{- .Values.config.ipPool }}
+#      avoid-buggy-ips: true
