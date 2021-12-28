@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "nginx.fullname" . }}
+  name: {{ include "nginx.fullname" . }}-np
   labels:
     {{- include "nginx.labels" . | nindent 4 }}
 spec:
@@ -14,3 +14,30 @@ spec:
   selector:
     {{- include "nginx.selectorLabels" . | nindent 4 }}
 #   app: {{ include "nginx.fullname" . }}
+
+----
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "nginx.fullname" . }}
+  labels:
+    {{- include "nginx.labels" . | nindent 4 }}
+  annotations:
+    metallb.universe.tf/address-pool: default
+    metallb.universe.tf/allow-shared-ip: nginx-svc
+spec:
+  externalTrafficPolicy: Local
+  loadBalancerIP:  {{ .Values.service.ip }}
+  ports:
+    - port: 80
+      targetPort: 80
+      name: port80
+      protocol: TCP
+    - port: 443
+      targetPort: 443
+      name: port443
+      protocol: TCP
+  selector:
+    {{- include "nginx.selectorLabels" . | nindent 4 }}
+  type: LoadBalancer
