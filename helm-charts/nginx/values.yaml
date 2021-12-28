@@ -42,6 +42,7 @@ containerPort:
 service:
   type: NodePort
   port: 31111
+  ip: 192.168.0.230
 
 ingress:
   enabled: true
