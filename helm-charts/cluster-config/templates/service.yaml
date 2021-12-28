@@ -11,7 +11,7 @@ metadata:
 #    traefik.ingress.kubernetes.io/session-cookie-name: "sticky"
 spec:
   externalTrafficPolicy: Local
-  loadBalancerIP:  {{ .Values.minecraft-service.ip }}
+  loadBalancerIP:  {{ .Values.minecraftService.ip }}
   ports:
     # pihole use Ports to expose (53, 80, 67, 443), the bare minimum ports required for Pi-holes HTTP and DNS services
     - port: 25565
