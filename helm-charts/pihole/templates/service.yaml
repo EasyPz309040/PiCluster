@@ -7,8 +7,6 @@ metadata:
   annotations:
     metallb.universe.tf/address-pool: default
     metallb.universe.tf/allow-shared-ip: pihole-svc
-#    traefik.ingress.kubernetes.io/affinity: "true"
-#    traefik.ingress.kubernetes.io/session-cookie-name: "sticky"
 spec:
   externalTrafficPolicy: Local
   loadBalancerIP:  {{ .Values.service.ip }}
@@ -26,23 +24,6 @@ spec:
       targetPort: 53
       protocol: TCP
       name: port53
-  selector:
-    {{- include "pihole.selectorLabels" . | nindent 4 }}
-  type: LoadBalancer
-
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: pihole-udp
-  annotations:
-    metallb.universe.tf/address-pool: default
-    metallb.universe.tf/allow-shared-ip: pihole-svc
-spec:
-  externalTrafficPolicy: Local
-  loadBalancerIP: {{ .Values.service.ip }}
-  ports:
     - port: 53
       targetPort: 53
       protocol: UDP
@@ -54,3 +35,28 @@ spec:
   selector:
     {{- include "pihole.selectorLabels" . | nindent 4 }}
   type: LoadBalancer
+
+#---
+
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: pihole-udp
+#  annotations:
+#    metallb.universe.tf/address-pool: default
+#    metallb.universe.tf/allow-shared-ip: pihole-svc
+#spec:
+#  externalTrafficPolicy: Local
+#  loadBalancerIP: {{ .Values.service.ip }}
+#  ports:
+#    - port: 53
+#      targetPort: 53
+#      protocol: UDP
+#      name: port53-udp
+#    - port: 67
+#      targetPort: 67
+#      protocol: UDP
+#      name: port67-udp
+#  selector:
+#    {{- include "pihole.selectorLabels" . | nindent 4 }}
+#  type: LoadBalancer
