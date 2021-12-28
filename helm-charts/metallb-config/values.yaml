@@ -1,6 +1,17 @@
 # Default values for metallb.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-
+#
+# metallb REPO: https://metallb.github.io/metallb
+#
+# metallb values yaml must be updated with:
+#
+#  configInline:
+#    address-pools:
+#      - addresses: 
+#          - 192.168.0.200-192.168.0.250
+#        name: default
+#        protocol: layer2
+#
 namespace:
   name: metallb-system
