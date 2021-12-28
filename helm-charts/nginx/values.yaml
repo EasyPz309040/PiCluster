@@ -36,13 +36,8 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
-containerPort:
-  port: 80
-
 service:
-  type: NodePort
-  port: 31111
-  ip: 192.168.0.230
+  ip: 192.168.0.249
 
 ingress:
   enabled: true
