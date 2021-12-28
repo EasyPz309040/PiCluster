@@ -5,17 +5,17 @@ metadata:
   labels:
     {{- include "nginx.labels" . | nindent 4 }}
 spec:
-  type: NodePort
+  type: {{ .Values.service.type }}
   ports:
-    - port: 31111
-      nodePort: 31111
-      targetPort: 80
+    - port: {{ .Values.service.port }}
+      nodePort: {{ .Values.service.port }}
+      targetPort: {{ .Values.containerPort.port }}
       name: web
   selector:
     {{- include "nginx.selectorLabels" . | nindent 4 }}
 #   app: {{ include "nginx.fullname" . }}
 
----
+----
 
 apiVersion: v1
 kind: Service
