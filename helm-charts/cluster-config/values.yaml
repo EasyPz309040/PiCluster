@@ -13,4 +13,5 @@
 #        name: default
 #        protocol: layer2
 
-namespace: metallb-system
+namespace: 
+  name: metallb-system
