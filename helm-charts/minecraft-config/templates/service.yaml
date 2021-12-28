@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: minecraft
   labels:
-    {{- include "cluster-config.labels" . | nindent 4 }}
+    {{- include "minecraft-config.labels" . | nindent 4 }}
   annotations:
     metallb.universe.tf/address-pool: default
     metallb.universe.tf/allow-shared-ip: minecraft-minecraft-svc
