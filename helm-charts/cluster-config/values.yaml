@@ -15,7 +15,7 @@
 
 
 minecraftService:
-  ip: 192.168.0.240
+  ip: 192.168.0.248
 
 
 ingress:

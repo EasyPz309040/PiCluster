@@ -15,6 +15,23 @@ spec:
       targetPort: 25565
       name: port25565
       protocol: TCP
+  selector:
+    app: minecraft-minecraft
+  type: LoadBalancer
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: minecraft-udp
+  labels:
+    {{- include "cluster-config.labels" . | nindent 4 }}
+  annotations:
+    metallb.universe.tf/address-pool: default
+    metallb.universe.tf/allow-shared-ip: minecraft-minecraft-svc
+spec:
+  externalTrafficPolicy: Local
+  loadBalancerIP:  {{ .Values.minecraftService.ip }}
+  ports:
     - port: 19132
       targetPort: 19132
       name: port19132
