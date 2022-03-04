@@ -63,28 +63,26 @@ controller:
   service:
     annotations: {}
     create: true
-    customPorts: []
+    customPorts: 
+      - name: minecraft
+        port: 25565
+        targetPort: 25565
     externalIPs: []
     externalTrafficPolicy: Local
     extraLabels: {}
     httpPort:
-      enable: true
+      enable: false
       nodePort: ''
       port: 80
       targetPort: 80
     httpsPort:
-      enable: true
+      enable: false
       nodePort: ''
       port: 443
       targetPort: 443
     loadBalancerIP: 192.168.0.201
     loadBalancerSourceRanges: []
     type: LoadBalancer
-    minecraft:
-      enable: true
-      nodePort: ''
-      port: 25565
-      targetPort: 25565
   serviceAccount:
     imagePullSecretName: ''
   setAsDefaultIngress: true
