@@ -18,26 +18,3 @@ spec:
   selector:
     app: minecraft-minecraft
   type: {{ .Values.service.type }}
-
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: minecraft-udp
-  labels:
-    {{- include "minecraft-config.labels" . | nindent 4 }}
-  annotations:
-    metallb.universe.tf/address-pool: default
-    metallb.universe.tf/allow-shared-ip: minecraft-minecraft-svc
-spec:
-  externalTrafficPolicy: Local
-  loadBalancerIP:  {{ .Values.service.ip }}
-  ports:
-    - port: 19132
-      targetPort: 19132
-      name: port19132
-      protocol: UDP
-  selector:
-    app: minecraft-minecraft
-  type: LoadBalancer
