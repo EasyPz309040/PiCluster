@@ -35,7 +35,7 @@ spec:
   loadBalancerIP:  192.168.0.246
   ports:
     - port: 25566
-      targetPort: 25566
+      targetPort: 25565
       name: port25566
       protocol: TCP
   selector:
