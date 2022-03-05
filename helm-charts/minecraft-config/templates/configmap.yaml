@@ -4,4 +4,4 @@ metadata:
   name: tcp-services
   namespace: default
 data:
-  "25565": minecraft/mc-games-minecraft:25565
+  "25565": default/mc-games-minecraft:25565

@@ -88,6 +88,12 @@ controller:
   serviceAccount:
     imagePullSecretName: ''
   setAsDefaultIngress: true
+  tcp:
+    # -- Allows customization of the tcp-services-configmap; defaults to $(POD_NAMESPACE)
+    #configMapNamespace: defaults
+    25565: default/tcp-services:25565
+    # -- Annotations to be added to the tcp config configmap
+    #annotations: {}
   terminationGracePeriodSeconds: 30
   tolerations: []
   volumeMounts: []
