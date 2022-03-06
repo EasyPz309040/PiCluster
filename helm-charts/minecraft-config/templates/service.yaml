@@ -9,9 +9,9 @@ metadata:
     metallb.universe.tf/allow-shared-ip: minecraft-minecraft
 spec:
   externalTrafficPolicy: Local
-  loadBalancerIP:  192.168.0.245
+  loadBalancerIP:  192.168.0.211
   ports:
-    - port: 25565
+    - port: 60211
       targetPort: 25565
       name: port25565
       protocol: TCP
@@ -32,9 +32,9 @@ metadata:
     metallb.universe.tf/allow-shared-ip: mc-games-minecraft
 spec:
   externalTrafficPolicy: Local
-  loadBalancerIP:  192.168.0.246
+  loadBalancerIP:  192.168.0.212
   ports:
-    - port: 25566
+    - port: 60212
       targetPort: 25565
       name: port25566
       protocol: TCP
