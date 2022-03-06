@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: minecraft
+  name: minecraft-lb
   labels:
     {{- include "minecraft-config.labels" . | nindent 4 }}
   annotations:
@@ -13,7 +13,7 @@ spec:
   ports:
     - port: 60211
       targetPort: 25565
-      name: port25565
+      name: port60211
       protocol: TCP
   selector:
     app: minecraft-minecraft
@@ -24,7 +24,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mc-games
+  name: mc-games-lb
   labels:
     {{- include "minecraft-config.labels" . | nindent 4 }}
   annotations:
@@ -36,7 +36,7 @@ spec:
   ports:
     - port: 60212
       targetPort: 25565
-      name: port25566
+      name: port60212
       protocol: TCP
   selector:
     app: mc-games-minecraft
