@@ -57,7 +57,7 @@ minecraftServer:
   downloadModpackUrl: null
   downloadWorldUrl: null
   enableCommandBlock: true
-  eula: 'FALSE'
+  eula: 'TRUE'
   externalIPs: null
   extraPorts: []
   forceReDownload: false
@@ -81,7 +81,7 @@ minecraftServer:
   maxTickTime: 60000
   maxWorldSize: 10000
   memory: 1024M
-  motd: Welcome to Minecraft on Kubernetes!
+  motd: Bee better at MC-Games!
   nodePort: null
   onlineMode: true
   ops: null
@@ -116,7 +116,8 @@ minecraftServer:
   viewDistance: 10
   whitelist: null
   worldSaveName: world
-nodeSelector: {}
+nodeSelector:
+  worker: bee
 persistence:
   annotations: {}
   dataDir:
