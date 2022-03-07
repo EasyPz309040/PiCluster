@@ -14,11 +14,11 @@ livenessProbe:
   successThreshold: 1
   timeoutSeconds: 1
 mcbackup:
-  backupInterval: 24h
+  backupInterval: 48h
   backupMethod: tar
   compressMethod: gzip
   destDir: /backups
-  enabled: false
+  enabled: true
   excludes: '*.jar,cache,logs'
   extraEnvs: []
   image: itzg/mc-backup
@@ -29,9 +29,10 @@ mcbackup:
   persistence:
     annotations: {}
     backupDir:
-      Size: 1Gi
-      enabled: false
-  pruneBackupsDays: 7
+      Size: 32Gi
+      enabled: true
+    storageClass: nfs-client
+  pruneBackupsDays: 8
   pruneResticRetention: '--keep-daily 7 --keep-weekly 5 --keep-monthly 12 --keep-yearly 75'
   rcloneCompressMethod: gzip
   rcloneConfig: null
@@ -53,17 +54,36 @@ minecraftServer:
   bukkitDownloadUrl: null
   cfServerMod: null
   clusterIP: null
-  difficulty: easy
+  difficulty: normal
+  disableElytraMovementCheck: false
+  disableRaids: false
+  doDaylightCycle: true
+  doEntityDrops: true
+  doFireTick: true
+  doInsomnia: true
+  doImmediateRespawn: false
+  doLimitedCrafting: false
+  doMobLoot: true
+  doMobSpawning: true
+  doPatrolSpawning: true
+  doTileDrops: true
+  doTraderSpawning: true
+  doWeatherCycle: ture
   downloadModpackUrl: null
   downloadWorldUrl: null
+  drowningDamage: true
   enableCommandBlock: true
   eula: 'TRUE'
   externalIPs: null
   extraPorts: []
+  fallDamage: true
+  fireDamage: true
   forceReDownload: false
   forcegameMode: false
   forgeInstallerUrl: null
   forgeVersion: null
+  forgiveDeadPlayers: true
+  freezeDamage: true
   ftbLegacyJavaFixer: false
   ftbServerMod: null
   gameMode: survival
@@ -77,20 +97,25 @@ minecraftServer:
   levelType: DEFAULT
   loadBalancerIP: null
   maxBuildHeight: 256
+  maxCommandChainLength: 65536
+  maxEntityCramming: 24
   maxPlayers: 20
   maxTickTime: 60000
-  maxWorldSize: 10000
-  memory: 1024M
-  motd: Bee better at MC-Games!
+  maxWorldSize: 29999984
+  memory: 8192M
+  motd: Bee better at MC-Games!  (8Gig/4.7Ghz)
+  naturalRegeneration: true
   nodePort: null
   onlineMode: true
-  ops: null
+  ops: kumuruku,komoruku,_Tico_A,ticoa,bertiljo
   overrideServerProperties: false
   paperDownloadUrl: null
+  playersSleepingPercentage: 100
   pvp: false
   query:
     enabled: false
     port: 25565
+  randomTickSpeed: 10
   rcon:
     clusterIP: null
     enabled: false
@@ -101,28 +126,35 @@ minecraftServer:
     port: 25575
     secretKey: rcon-password
     serviceType: ClusterIP
+  reducedDebugInfo: false
   removeOldMods: false
+  seed: -1487386767313752781
+  sendCommandFeedback: true
   serviceAnnotations: {}
   servicePort: 25565
   serviceType: ClusterIP
+  showDeathMessages: true
   spawnAnimals: true
   spawnMonsters: true
   spawnNPCs: true
   spawnProtection: 16
+  spawnRadius: 10
   spigotDownloadUrl: null
   spongeVersion: null
   type: VANILLA
+  universalAnger: false
   version: LATEST
   viewDistance: 10
-  whitelist: null
+  whitelist: komoruku,kumuruku,ticoa,_Tico_A,bertiljo,nite_arthur
   worldSaveName: world
 nodeSelector:
   worker: bee
 persistence:
   annotations: {}
   dataDir:
-    Size: 1Gi
-    enabled: false
+    Size: 32Gi
+    enabled: true
+  storageClass: nfs-client
 podAnnotations: {}
 rconServiceAnnotations: {}
 readinessProbe:
@@ -134,8 +166,8 @@ readinessProbe:
 replicaCount: 1
 resources:
   requests:
-    cpu: 500m
-    memory: 512Mi
+    cpu: 900m
+    memory: 2024M
 securityContext:
   fsGroup: 2000
   runAsUser: 1000
