@@ -85,5 +85,5 @@ spec:
       name: port60214
       protocol: TCP
   selector:
-    app: mc-origins-minecraft
+    app: mc-pvp-minecraft
   type: LoadBalancer
