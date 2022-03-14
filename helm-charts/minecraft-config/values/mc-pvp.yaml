@@ -1,0 +1,181 @@
+affinity: {}
+deploymentAnnotations: {}
+envFrom: []
+extraEnv: {}
+extraVolumes: []
+image: itzg/minecraft-server
+imagePullSecret: ''
+imageTag: latest
+initContainers: []
+livenessProbe:
+  failureThreshold: 10
+  initialDelaySeconds: 30
+  periodSeconds: 5
+  successThreshold: 1
+  timeoutSeconds: 1
+mcbackup:
+  backupInterval: 2d
+  backupMethod: tar
+  compressMethod: gzip
+  destDir: /backups
+  enabled: true
+  excludes: '*.jar,cache,logs'
+  extraEnvs: []
+  image: itzg/mc-backup
+  imageTag: latest
+  initialDelay: 2m
+  linkLatest: 'false'
+  pauseIfNoPlayers: 'false'
+  persistence:
+    annotations: {}
+    backupDir:
+      Size: 32Gi
+      enabled: true
+    storageClass: nfs-client
+  pruneBackupsDays: 8
+  pruneResticRetention: '--keep-daily 7 --keep-weekly 5 --keep-monthly 12 --keep-yearly 75'
+  rcloneCompressMethod: gzip
+  rcloneConfig: null
+  rcloneDestDir: null
+  rcloneRemote: null
+  rconRetries: 5
+  rconRetryInterval: 10s
+  resources:
+    requests:
+      cpu: 500m
+      memory: 512Mi
+  resticAdditionalTags: mc_backups
+  resticEnvs: []
+  resticRepository: null
+  zstdParameters: '-3 --long=25 --single-thread'
+minecraftServer:
+  allowNether: true
+  announcePlayerAchievements: true
+  bukkitDownloadUrl: null
+  cfServerMod: null
+  clusterIP: null
+  difficulty: normal
+  disableElytraMovementCheck: false
+  disableRaids: false
+  doDaylightCycle: true
+  doEntityDrops: true
+  doFireTick: true
+  doInsomnia: true
+  doImmediateRespawn: false
+  doLimitedCrafting: false
+  doMobLoot: true
+  doMobSpawning: true
+  doPatrolSpawning: true
+  doTileDrops: true
+  doTraderSpawning: true
+  doWeatherCycle: ture
+  downloadModpackUrl: null
+  downloadWorldUrl: null
+  drowningDamage: true
+  enableCommandBlock: true
+  eula: 'TRUE'
+  externalIPs: null
+  extraPorts: []
+  fallDamage: true
+  fireDamage: true
+  forceReDownload: false
+  forcegameMode: false
+  forgeInstallerUrl: null
+  forgeVersion: null
+  forgiveDeadPlayers: true
+  freezeDamage: true
+  ftbLegacyJavaFixer: false
+  ftbServerMod: null
+  gameMode: survival
+  generateStructures: true
+  generatorSettings: null
+  hardcore: false
+  icon: null
+  jvmOpts: ''
+  jvmXXOpts: ''
+  levelSeed: null
+  levelType: DEFAULT
+  loadBalancerIP: null
+  maxBuildHeight: 256
+  maxCommandChainLength: 65536
+  maxEntityCramming: 24
+  maxPlayers: 20
+  maxTickTime: 60000
+  maxWorldSize: 1000000
+  memory: 8192M
+  motd: Bee better at Life Steal!  (8Gig/4.7Ghz)
+  naturalRegeneration: true
+  nodePort: null
+  onlineMode: true
+  ops: kumuruku,komoruku,_Tico_A,ticoa,bertiljo
+  overrideServerProperties: false
+  paperDownloadUrl: null
+  playersSleepingPercentage: 100
+  pvp: false
+  query:
+    enabled: false
+    port: 25565
+  randomTickSpeed: 10
+  rcon:
+    clusterIP: null
+    enabled: false
+    existingSecret: null
+    loadBalancerIP: null
+    nodePort: null
+    password: CHANGEME!
+    port: 25575
+    secretKey: rcon-password
+    serviceType: ClusterIP
+  reducedDebugInfo: false
+  removeOldMods: false
+  seed: 1248939201
+  sendCommandFeedback: true
+  serviceAnnotations: {}
+  servicePort: 25565
+  serviceType: ClusterIP
+  showDeathMessages: true
+  spawnAnimals: true
+  spawnMonsters: true
+  spawnNPCs: true
+  spawnProtection: 16
+  spawnRadius: 10
+  spigotDownloadUrl: null
+  spongeVersion: null
+  type: VANILLA
+  universalAnger: false
+  version: LATEST
+  viewDistance: 10
+  whitelist: kumuruku
+  worldSaveName: world
+nodeSelector:
+  worker: bee
+persistence:
+  annotations: {}
+  dataDir:
+    Size: 32Gi
+    enabled: false
+  storageClass: nfs-client
+podAnnotations: {}
+rconServiceAnnotations: {}
+readinessProbe:
+  failureThreshold: 10
+  initialDelaySeconds: 30
+  periodSeconds: 5
+  successThreshold: 1
+  timeoutSeconds: 1
+replicaCount: 1
+resources:
+  requests:
+    cpu: 900m
+    memory: 2024M
+securityContext:
+  fsGroup: 2000
+  runAsUser: 1000
+serviceAnnotations: {}
+sidecarContainers: []
+startupProbe:
+  enabled: false
+  failureThreshold: 30
+  periodSeconds: 10
+strategyType: Recreate
+tolerations: []
