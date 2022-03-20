@@ -93,7 +93,7 @@ minecraftServer:
   icon: null
   jvmOpts: ''
   jvmXXOpts: ''
-  levelSeed: null
+  levelSeed: '1248939201'
   levelType: DEFAULT
   loadBalancerIP: null
   maxBuildHeight: 256
@@ -107,11 +107,11 @@ minecraftServer:
   naturalRegeneration: true
   nodePort: null
   onlineMode: true
-  ops: kumuruku,komoruku,_Tico_A,ticoa,bertiljo
+  ops: _booie_
   overrideServerProperties: false
   paperDownloadUrl: null
   playersSleepingPercentage: 100
-  pvp: false
+  pvp: true
   query:
     enabled: false
     port: 25565
@@ -128,7 +128,6 @@ minecraftServer:
     serviceType: ClusterIP
   reducedDebugInfo: false
   removeOldMods: false
-  seed: 1248939201
   sendCommandFeedback: true
   serviceAnnotations: {}
   servicePort: 25565
@@ -141,11 +140,11 @@ minecraftServer:
   spawnRadius: 10
   spigotDownloadUrl: null
   spongeVersion: null
-  type: VANILLA
+  type: PAPER
   universalAnger: false
   version: LATEST
   viewDistance: 10
-  whitelist: kumuruku
+  whitelist: kumuruku,_Tico_A,bertiljo,nite_arthur
   worldSaveName: world
 nodeSelector:
   worker: bee
@@ -153,7 +152,7 @@ persistence:
   annotations: {}
   dataDir:
     Size: 32Gi
-    enabled: false
+    enabled: true
   storageClass: nfs-client
 podAnnotations: {}
 rconServiceAnnotations: {}
