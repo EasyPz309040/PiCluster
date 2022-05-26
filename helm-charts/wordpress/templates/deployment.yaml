@@ -19,8 +19,7 @@ spec:
         tier: frontend
     spec:
       containers:
-        - image: wordpress:5.4-apache
-          name: wordpress
+        - name: wordpress
           env:
             - name: WORDPRESS_DB_HOST
               value: wordpress-mariadb
@@ -29,6 +28,8 @@ spec:
                 secretKeyRef:
                   name: mariadb-pass
                   key: password
+          image: "{{ .Values.wordpressImage.repository }}:{{ .Values.wordpressImage.tag }}"
+          imagePullPolicy: {{ .Values.wordpressImage.pullPolicy }}
           ports:
             - containerPort: 80
               name: wordpress

@@ -19,14 +19,15 @@ spec:
         tier: mariadb
     spec:
       containers:
-        - image: tobi312/rpi-mariadb:10.3
-          name: mariadb
+        - name: mariadb
           env:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: mariadb-pass
                   key: password
+          image: "{{ .Values.mariadbImage.repository }}:{{ .Values.mariadbImage.tag }}"
+          imagePullPolicy: {{ .Values.mariadbImage.pullPolicy }}
           ports:
             - containerPort: 3306
               name: mariadb
