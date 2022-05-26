@@ -8,8 +8,10 @@ spec:
     - host: wordpress.192.168.0.200.nip.io
       http:
         paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              serviceName: wordpress
-              servicePort: 80
+        - backend:
+            service:
+              name: wordpress
+              port: 
+                name: http
+          path: /
+          pathType: Prefix
