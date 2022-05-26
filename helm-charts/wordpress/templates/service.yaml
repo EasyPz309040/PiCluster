@@ -7,8 +7,9 @@ metadata:
     app: wordpress
 spec:
   ports:
-    - port: 3306
-    - targetPort: 3306
+  - name: wordpress-mariadb
+    port: 3306
+    targetPort: 3306
   selector:
     app: wordpress
     tier: mariadb
