@@ -40,6 +40,8 @@ spec:
             requests:
               cpu: '500m'
               memory: '256Mi'
+      nodeSelector:
+        worker: pi
       volumes:
         - name: mariadb-persistent-storage
           persistentVolumeClaim:
