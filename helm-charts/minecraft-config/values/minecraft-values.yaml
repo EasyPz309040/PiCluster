@@ -111,7 +111,7 @@ minecraftServer:
   naturalRegeneration: true
   nodePort: null
   onlineMode: true
-  ops: kumuruku,komoruku,_Tico_A,ticoa,bertiljo
+  ops: kumuruku,komoruku,_Tico_A,ticoa,bertiljo,_booie_
   paperDownloadUrl: null
   playersSleepingPercentage: 100
   pvp: false
@@ -149,7 +149,7 @@ minecraftServer:
   universalAnger: false
   version: LATEST
   viewDistance: 10
-  whitelist: komoruku,kumuruku,ticoa,_Tico_A,bertiljo,nite_arthur
+  whitelist: komoruku,kumuruku,ticoa,_Tico_A,bertiljo,nite_arthur,_booie_
   worldSaveName: world
 nodeSelector:
   worker: bee
