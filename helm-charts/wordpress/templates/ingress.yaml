@@ -3,6 +3,8 @@ kind: Ingress
 metadata:
   name: wordpress
   namespace: wordpress
+  annotations:
+    kubernetes.io/ingress.allow-http: "false"
 spec:
   rules:
     - host: kumuruku.com
