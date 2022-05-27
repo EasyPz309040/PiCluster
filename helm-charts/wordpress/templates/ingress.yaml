@@ -15,3 +15,7 @@ spec:
                 number: {{ .Values.nodePortService.nodePort }}
           path: /
           pathType: Prefix
+  tls:
+  - hosts:
+    - kumuruku.com
+    secretName: kumuruku-com-tls
