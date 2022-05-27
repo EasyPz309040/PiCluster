@@ -9,3 +9,6 @@ mariadbImage:
   repository: tobi312/rpi-mariadb
   tag: "10.3"
   pullPolicy: IfNotPresent
+
+nodePortService:
+  nodePort: 31120

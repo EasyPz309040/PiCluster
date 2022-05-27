@@ -12,6 +12,6 @@ spec:
             service:
               name: wordpress-np
               port: 
-                number: 31120
+                number: {{ .Values.nodePortService.nodePort }}
           path: /
           pathType: Prefix

@@ -27,8 +27,8 @@ metadata:
 spec:
   ports:
   - name: web
-    nodePort: 31120
-    port: 31120
+    nodePort: {{ .Values.nodePortService.nodePort }}
+    port: {{ .Values.nodePortService.nodePort }}
     targetPort: 80
   selector:
     app: wordpress
