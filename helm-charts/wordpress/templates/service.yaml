@@ -20,13 +20,16 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: wordpress
+  name: wordpress-np
   namespace: wordpress
   labels:
     app: wordpress
 spec:
   ports:
-    - port: 80
+  - name: web
+    nodePort: 31120
+    port: 31120
+    targetPort: 80
   selector:
     app: wordpress
     tier: frontend

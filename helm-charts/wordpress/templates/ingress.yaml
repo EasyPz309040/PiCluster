@@ -5,13 +5,13 @@ metadata:
   namespace: wordpress
 spec:
   rules:
-    - host: wordpress.192.168.0.200.nip.io
+    - host: kumuruku.com
       http:
         paths:
         - backend:
             service:
-              name: wordpress
+              name: wordpress-np
               port: 
-                name: http
+                number: 31120
           path: /
           pathType: Prefix
