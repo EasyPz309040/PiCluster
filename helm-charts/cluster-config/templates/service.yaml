@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rancher-ip
+spec:
+  ports:
+  - name: rancher
+    port: 443
+    protocol: TCP
+    targetPort: 8443
+  clusterIP: None
+  type: ClusterIP
+
+---
+
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: rancher-ip
+subsets:
+- addresses:
+  # list all external ips for this service
+  - ip: 192.168.0.151
+  ports:
+  - name: rancher
+    port: 8443
+    protocol: TCP

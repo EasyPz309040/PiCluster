@@ -1,0 +1,66 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod
+spec:
+  acme:
+    # The ACME server URL
+    server: https://acme-v02.api.letsencrypt.org/directory
+    # Email address used for ACME registration
+    email: henry309040@hotmail.com
+    # Name of a secret used to store the ACME account private key
+    privateKeySecretRef:
+      name: letsencrypt-prod
+    # Enable the HTTP-01 challenge provider
+    solvers:
+    - http01:
+        ingress:
+          class: traefik
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: kumuruku-com
+  namespace: wordpress
+spec:
+  secretName: kumuruku-com-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: kumuruku.com
+  dnsNames:
+  - kumuruku.com
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: cows-kumuruku-com
+  namespace: default
+spec:
+  secretName: cows-kumuruku-com-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: cows.kumuruku.com
+  dnsNames:
+  - cows.kumuruku.com
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: rancher-kumuruku-com
+  namespace: default
+spec:
+  secretName: rancher-kumuruku-com-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: rancher.kumuruku.com
+  dnsNames:
+  - rancher.kumuruku.com
