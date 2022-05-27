@@ -19,6 +19,6 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: nginx-ingress
+  name: cert-manager
   labels:
     {{- include "cluster-config.labels" . | nindent 4 }}
