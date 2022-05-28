@@ -5,6 +5,7 @@ metadata:
   namespace: wordpress
   annotations:
     kubernetes.io/ingress.allow-http: "false"
+    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
 spec:
   rules:
     - host: kumuruku.com
