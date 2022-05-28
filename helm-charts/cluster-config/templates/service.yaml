@@ -9,7 +9,7 @@ spec:
     protocol: TCP
     targetPort: 8443
   clusterIP: None
-  type: ClusterIP
+selector: {}
 
 ---
 
