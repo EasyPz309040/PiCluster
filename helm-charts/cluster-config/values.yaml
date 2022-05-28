@@ -13,5 +13,8 @@
 #        name: default
 #        protocol: layer2
 
-namespace: 
-  name: metallb-system
+namespaces: 
+  names: metallb-system, wordpress, cert-manager
+
+certificates:
+  names: kumuruku.com, rancher.kumuruku.com, cows.kumuruku.com
