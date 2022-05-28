@@ -8,8 +8,6 @@ spec:
     port: 8443
     protocol: TCP
     targetPort: 8443
-  clusterIP: None
-selector: {}
 
 ---
 
