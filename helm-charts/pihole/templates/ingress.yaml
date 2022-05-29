@@ -15,7 +15,7 @@ spec:
             service:
               name: pihole
               port: 
-                number: {{ .Values.nodePortService.nodePort }}
+                number: 443
           path: /
           pathType: Prefix
   tls:
