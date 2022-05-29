@@ -63,9 +63,11 @@ spec:
           - name: pihole-pvc
             persistentVolumeClaim:
                 claimName: {{ .Values.pv.namePiHole }}
+                readOnly: false
           - name: dnsmasq-pvc
             persistentVolumeClaim:
                 claimName: {{ .Values.pv.nameDnsmasq }}
+                readOnly: false
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

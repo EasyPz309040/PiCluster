@@ -9,7 +9,7 @@ namespace:
 
 image:
   repository: pihole/pihole
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
 
@@ -18,11 +18,6 @@ nameOverride: ""
 fullnameOverride: ""
 
 adminPassword: "admin"
-
-nfsServer:
-  serverIP: "192.168.0.101"
-  mountPathPihole: /mnt/ssd/etc/pihole
-  mountPathDnsmasq: /mnt/ssd/etc/dnsmasq.d
 
 pv:
   namePiHole: pihole
