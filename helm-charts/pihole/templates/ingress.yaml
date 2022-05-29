@@ -13,7 +13,7 @@ spec:
         paths:
         - backend:
             service:
-              name: pihole
+              name: pihole-np
               port: 
                 number: 443
           path: /

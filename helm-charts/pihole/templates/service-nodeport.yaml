@@ -9,7 +9,7 @@ spec:
   ports:
     - port: 31116
       nodePort: 31116
-      targetPort: 80
+      targetPort: 443
       name: web
   selector:
     {{- include "pihole.selectorLabels" . | nindent 4 }}

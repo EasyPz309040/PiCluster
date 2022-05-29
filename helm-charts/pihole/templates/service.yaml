@@ -11,7 +11,7 @@ spec:
   externalTrafficPolicy: Local
   loadBalancerIP:  {{ .Values.service.ip }}
   ports:
-     pihole use Ports to expose (53, 80, 67, 443), the bare minimum ports required for Pi-holes HTTP and DNS services
+#     pihole use Ports to expose (53, 80, 67, 443), the bare minimum ports required for Pi-holes HTTP and DNS services
     - port: 80
       targetPort: 80
       name: port80
