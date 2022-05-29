@@ -1,7 +1,7 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: tcp-services
-  namespace: default
-data:
-  "25565": default/mc-games-minecraft:25565
+#apiVersion: v1
+#kind: ConfigMap
+#metadata:
+#  name: tcp-services
+#  namespace: default
+#data:
+#  "25565": default/mc-games-minecraft:25565
