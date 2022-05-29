@@ -15,7 +15,7 @@ spec:
             service:
               name: pihole-np
               port: 
-                number: 443
+                number: 31116
           path: /
           pathType: Prefix
   tls:
