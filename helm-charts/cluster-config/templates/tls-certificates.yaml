@@ -64,3 +64,19 @@ spec:
   commonName: rancher.kumuruku.com
   dnsNames:
   - rancher.kumuruku.com
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: pihole-kumuruku-com
+  namespace: default
+spec:
+  secretName: pihole-kumuruku-com-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: pihole.kumuruku.com
+  dnsNames:
+  - pihole.kumuruku.com

@@ -1,41 +1,4 @@
 apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: {{ .Values.pv.namePiHole }}
-  namespace: {{ .Values.namespace.name }}
-  labels:
-    {{- include "pihole.labels" . | nindent 4 }}
-spec:
-  accessModes:
-    - ReadWriteOnce
-    - ReadOnlyMany
-    - ReadWriteMany
-  capacity:
-    storage: 1Gi
-#    storage: {{ .Values.pv.capacityPiHole }}
-  claimRef:
-    apiVersion: v1
-    kind: PersistentVolumeClaim
-    name: {{ .Values.pv.namePiHole }}
-    namespace: {{ .Values.namespace.name }}
-  nfs:
-    path: {{ .Values.nfsServer.mountPathPihole }}
-    readOnly: false
-    server: {{ .Values.nfsServer.serverIP }}
-  nodeAffinity:
-    required:
-      nodeSelectorTerms:
-        - matchExpressions:
-            - key: hdd
-              operator: In
-              values:
-                - enabled
-  persistentVolumeReclaimPolicy: Retain
-  volumeMode: Filesystem
-
----
-
-apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: {{ .Values.pv.namePiHole }}
@@ -49,51 +12,7 @@ spec:
     requests:
       storage: 1Gi
 #      storage: {{ .Values.pv.capacityPiHole }}
-  storageClassName: ""
-  volumeMode: Filesystem
-  volumeName: {{ .Values.pv.namePiHole }}
-status:
-  accessModes:
-  - ReadWriteOnce
-  - ReadOnlyMany
-  - ReadWriteMany
-
----
-
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: {{ .Values.pv.nameDnsmasq }}
-  namespace: {{ .Values.namespace.name }}
-  labels:
-    {{- include "pihole.labels" . | nindent 4 }}
-spec:
-  accessModes:
-    - ReadWriteOnce
-    - ReadOnlyMany
-    - ReadWriteMany
-  capacity:
-    storage: 100Mi
-#    storage: {{ ".Values.pv.capacityDnsmasq" }}
-  claimRef:
-    apiVersion: v1
-    kind: PersistentVolumeClaim
-    name: {{ .Values.pv.nameDnsmasq }}
-    namespace: {{ .Values.namespace.name }}
-  nfs:
-    path: {{ .Values.nfsServer.mountPathDnsmasq }}
-    readOnly: false
-    server: {{ .Values.nfsServer.serverIP }}
-  nodeAffinity:
-    required:
-      nodeSelectorTerms:
-        - matchExpressions:
-            - key: hdd
-              operator: In
-              values:
-                - enabled
-  persistentVolumeReclaimPolicy: Retain
-  volumeMode: Filesystem
+  storageClassName: nfs-client
 
 ---
 
@@ -111,11 +30,4 @@ spec:
     requests:
       storage: 100Mi
 #      storage: {{ ".Values.pv.capacityDnsmasq" }}
-  storageClassName: ""
-  volumeMode: Filesystem
-  volumeName: {{ .Values.pv.nameDnsmasq }}
-status:
-  accessModes:
-  - ReadWriteOnce
-  - ReadOnlyMany
-  - ReadWriteMany
+  storageClassName: nfs-client
