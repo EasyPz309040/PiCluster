@@ -17,4 +17,4 @@ namespaces:
   names: metallb-system, wordpress, cert-manager
 
 certificates:
-  names: kumuruku.com, rancher.kumuruku.com, cows.kumuruku.com
+  names: kumuruku.com, rancher.kumuruku.com, cows.kumuruku.com, pihole.kumuruku.com
