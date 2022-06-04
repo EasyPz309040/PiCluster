@@ -22,3 +22,30 @@ spec:
   - hosts:
     - kumuruku.com
     secretName: kumuruku-com-tls
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: wordpress
+  namespace: wordpress
+  annotations:
+    kubernetes.io/ingress.allow-http: "false"
+    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
+spec:
+  rules:
+    - host: bee.kumuruku.com
+      http:
+        paths:
+        - backend:
+            service:
+              name: wordpress-np
+              port: 
+                number: {{ .Values.nodePortService.nodePort }}
+          path: /
+          pathType: Prefix
+  tls:
+  - hosts:
+    - bee.kumuruku.com
+    secretName: bee-kumuruku-com-tls
