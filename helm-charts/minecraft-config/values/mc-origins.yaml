@@ -3,9 +3,11 @@ deploymentAnnotations: {}
 envFrom: []
 extraEnv: {}
 extraVolumes: []
-image: itzg/minecraft-server
-imagePullSecret: ''
-imageTag: latest
+image:
+  pullPolicy: Always
+  pullSecret: ''
+  repository: itzg/minecraft-server
+  tag: latest
 initContainers: []
 livenessProbe:
   failureThreshold: 10
@@ -14,15 +16,17 @@ livenessProbe:
   successThreshold: 1
   timeoutSeconds: 1
 mcbackup:
-  backupInterval: 48h
+  backupInterval: 2d
   backupMethod: tar
   compressMethod: gzip
   destDir: /backups
   enabled: true
   excludes: '*.jar,cache,logs'
   extraEnvs: []
-  image: itzg/mc-backup
-  imageTag: latest
+  image:
+    pullPolicy: IfNotPresent
+    repository: itzg/mc-backup
+    tag: latest
   initialDelay: 2m
   linkLatest: 'false'
   pauseIfNoPlayers: 'false'
@@ -107,7 +111,7 @@ minecraftServer:
   naturalRegeneration: true
   nodePort: null
   onlineMode: true
-  ops: kumuruku,komoruku,_Tico_A,ticoa,bertiljo
+  ops: kumuruku,komoruku,_Tico_A,ticoa,bertiljo,_booie_
   overrideServerProperties: false
   paperDownloadUrl: null
   playersSleepingPercentage: 100
@@ -141,11 +145,11 @@ minecraftServer:
   spawnRadius: 10
   spigotDownloadUrl: null
   spongeVersion: null
-  type: VANILLA
+  type: FABRIC
   universalAnger: false
   version: LATEST
   viewDistance: 10
-  whitelist: komoruku,kumuruku,ticoa,_Tico_A,bertiljo,nite_arthur
+  whitelist: komoruku,kumuruku,ticoa,_Tico_A,bertiljo,nite_arthur,_booie_
   worldSaveName: world
 nodeSelector:
   worker: bee

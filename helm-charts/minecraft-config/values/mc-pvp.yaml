@@ -3,9 +3,11 @@ deploymentAnnotations: {}
 envFrom: []
 extraEnv: {}
 extraVolumes: []
-image: itzg/minecraft-server
-imagePullSecret: ''
-imageTag: latest
+image:
+  pullPolicy: Always
+  pullSecret: ''
+  repository: itzg/minecraft-server
+  tag: latest
 initContainers: []
 livenessProbe:
   failureThreshold: 10
@@ -21,8 +23,10 @@ mcbackup:
   enabled: true
   excludes: '*.jar,cache,logs'
   extraEnvs: []
-  image: itzg/mc-backup
-  imageTag: latest
+  image:
+    pullPolicy: IfNotPresent
+    repository: itzg/mc-backup
+    tag: latest
   initialDelay: 2m
   linkLatest: 'false'
   pauseIfNoPlayers: 'false'

@@ -3,9 +3,11 @@ deploymentAnnotations: {}
 envFrom: []
 extraEnv: {}
 extraVolumes: []
-image: itzg/minecraft-server
-imagePullSecret: ''
-imageTag: latest
+image:
+  pullPolicy: Always
+  pullSecret: ''
+  repository: itzg/minecraft-server
+  tag: latest
 initContainers: []
 livenessProbe:
   failureThreshold: 10
@@ -14,15 +16,17 @@ livenessProbe:
   successThreshold: 1
   timeoutSeconds: 1
 mcbackup:
-  backupInterval: 48h
+  backupInterval: 2d
   backupMethod: tar
   compressMethod: gzip
   destDir: /backups
   enabled: true
   excludes: '*.jar,cache,logs'
   extraEnvs: []
-  image: itzg/mc-backup
-  imageTag: latest
+  image:
+    pullPolicy: IfNotPresent
+    repository: itzg/mc-backup
+    tag: latest
   initialDelay: 2m
   linkLatest: 'false'
   pauseIfNoPlayers: 'false'
@@ -86,7 +90,7 @@ minecraftServer:
   freezeDamage: true
   ftbLegacyJavaFixer: false
   ftbServerMod: null
-  gameMode: survival
+  gameMode: creative
   generateStructures: true
   generatorSettings: null
   hardcore: false
@@ -94,7 +98,7 @@ minecraftServer:
   jvmOpts: ''
   jvmXXOpts: ''
   levelSeed: null
-  levelType: DEFAULT
+  levelType: FLAT
   loadBalancerIP: null
   maxBuildHeight: 256
   maxCommandChainLength: 65536
@@ -107,7 +111,7 @@ minecraftServer:
   naturalRegeneration: true
   nodePort: null
   onlineMode: true
-  ops: kumuruku,komoruku,_Tico_A,ticoa,bertiljo
+  ops: kumuruku,komoruku,_Tico_A,ticoa,_booie_
   overrideServerProperties: false
   paperDownloadUrl: null
   playersSleepingPercentage: 100
@@ -145,7 +149,7 @@ minecraftServer:
   universalAnger: false
   version: LATEST
   viewDistance: 10
-  whitelist: komoruku,kumuruku,ticoa,_Tico_A,bertiljo,nite_arthur
+  whitelist: komoruku,kumuruku,ticoa,_Tico_A,_booie_
   worldSaveName: world
 nodeSelector:
   worker: bee
