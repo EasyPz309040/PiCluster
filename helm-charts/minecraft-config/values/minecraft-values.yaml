@@ -4,7 +4,7 @@ envFrom: []
 extraEnv: {}
 extraVolumes: []
 image:
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   pullSecret: ''
   repository: itzg/minecraft-server
   tag: latest
