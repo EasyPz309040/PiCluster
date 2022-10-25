@@ -152,7 +152,7 @@ minecraftServer:
   universalAnger: false
   version: LATEST
   viewDistance: 10
-  whitelist: komoruku,kumuruku,ticoa,_Tico_A,bertiljo,nite_arthur,_booie_
+  whitelist: komoruku,kumuruku,ticoa,_Tico_A,bertiljo,nite_arthur,_booie_,CyanNeub,Aratinga2003
   worldSaveName: world
 nodeSelector:
   worker: bee

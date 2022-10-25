@@ -147,7 +147,7 @@ minecraftServer:
   spongeVersion: null
   type: FABRIC
   universalAnger: false
-  version: LATEST
+  version: '1.18.1'
   viewDistance: 10
   whitelist: komoruku,kumuruku,ticoa,_Tico_A,bertiljo,nite_arthur,_booie_
   worldSaveName: world
